@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:speedometer_mobile/viewmodels/theme/theme_model.dart';
-import 'package:speedometer_mobile/views/home_screen/home_screen.dart';
+import 'package:speedometer_mobile/views/home_screen.dart';
 
 class AppColors {
   static const primary = Colors.orange;
