@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Kalkulator',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.time_to_leave),
+            icon: Icon(Icons.speed),
             label: 'Prędkość',
           ),
           BottomNavigationBarItem(
