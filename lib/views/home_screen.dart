@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 //screens
 import 'package:speedometer_mobile/views/calculator/calculator_screen.dart';
 import 'package:speedometer_mobile/views/records/records_screen.dart';
-import 'package:speedometer_mobile/views/settings/settings_screen.dart';
+import 'package:speedometer_mobile/views/about/about_screen.dart';
 import 'package:speedometer_mobile/views/speed/speed_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -52,8 +52,8 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Rekordy',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Ustawienia',
+            icon: Icon(Icons.info),
+            label: 'About',
           ),
         ],
         currentIndex: _selectedIndex,

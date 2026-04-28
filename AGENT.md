@@ -16,7 +16,7 @@ Potem przechodzimy na home screen:
 	- wybierz mile lub km i to musi być zapamiętane dla użytkownika
 	- wyloguj
 	- logo ideis
-	-  autorzy
+	- autorzy
 
 **dodatkowe wymogi:**
 - musi się obracać i dalej ładnie wyglądać

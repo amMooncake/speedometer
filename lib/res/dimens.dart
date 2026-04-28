@@ -17,8 +17,7 @@ class AppDimens {
   static Gap gap([double x = 1.0]) => Gap(baseSize * x);
 
   /// return padding for spacing
-  static EdgeInsetsGeometry paddingAll(double? x) =>
-      EdgeInsets.all(baseSize * (x ?? 1));
+  static EdgeInsetsGeometry paddingAll(double? x) => EdgeInsets.all(baseSize * (x ?? 1));
 
   static EdgeInsetsGeometry paddingHorizontal(double? x) =>
       EdgeInsets.symmetric(horizontal: baseSize * (x ?? 1));
