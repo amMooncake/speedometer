@@ -24,8 +24,13 @@ class AppDimens {
 }
 
 /* 
+
 this code is copied from my other project, 
-and one time I tried to do something smart to use dimend with .copyWith property
+
+One time I tried to do something smart to use dimend with .copyWith property, 
+but it's too complicated and it's not worth using
+
+I pased it here, to have a referance if neaded
 
 */
 
