@@ -258,12 +258,13 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   }
 
   Widget _buildSectionTitle(String title, CalculatorField field) {
+    final t = Theme.of(context);
     final isOutput = _fieldOrder[2] == field;
     return Text(
       title,
-      style: Theme.of(
-        context,
-      ).textTheme.headlineSmall?.copyWith(color: isOutput ? Colors.orange : null),
+      style: t.textTheme.headlineSmall?.copyWith(
+        color: isOutput ? t.colorScheme.primary : t.colorScheme.onSurfaceVariant,
+      ),
     );
   }
 
@@ -370,7 +371,7 @@ class _HistorySheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final history = context.watch<CalculationHistoryViewModel>().history;
-
+    final t = Theme.of(context);
     return DraggableScrollableSheet(
       initialChildSize: 0.6,
       minChildSize: 0.4,
@@ -395,7 +396,7 @@ class _HistorySheet extends StatelessWidget {
                 children: [
                   Text(
                     'Historia wyników',
-                    style: Theme.of(context).textTheme.titleLarge,
+                    style: t.textTheme.titleLarge,
                   ),
                   TextButton(
                     onPressed: () => context.read<CalculationHistoryViewModel>().clearHistory(),

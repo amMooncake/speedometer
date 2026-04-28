@@ -179,8 +179,11 @@ class _SpeedScreenState extends State<SpeedScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text(
-            'Current Speed',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            'Prędkość',
+            style: TextStyle(
+              fontSize: AppDimens.baseSize * 3,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           AppDimens.gap(),
           Text(
@@ -188,7 +191,7 @@ class _SpeedScreenState extends State<SpeedScreen> {
             style: TextStyle(
               fontSize: 80,
               fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.primary,
+              color: Theme.of(context).colorScheme.secondary,
             ),
           ),
           Text(

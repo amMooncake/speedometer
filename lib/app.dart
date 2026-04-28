@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:speedometer_mobile/config/theme.dart';
 import 'package:speedometer_mobile/viewmodels/theme/theme_model.dart';
 import 'package:speedometer_mobile/views/home_screen.dart';
 
@@ -18,14 +19,13 @@ class Speedometer extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       themeMode: themeViewModel.themeMode,
       theme: ThemeData(
-        colorSchemeSeed: AppColors.primary,
         useMaterial3: true,
+        colorScheme: lightColorScheme,
         fontFamily: '.SF Pro Text',
       ),
       darkTheme: ThemeData(
-        colorSchemeSeed: AppColors.primary,
-        brightness: Brightness.dark,
         useMaterial3: true,
+        colorScheme: darkColorScheme,
         fontFamily: '.SF Pro Text',
       ),
       // home: const OnboardingScreen(),
