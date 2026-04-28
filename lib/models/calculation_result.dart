@@ -40,7 +40,7 @@ class CalculationResult {
     final h = (timeSeconds / 3600).floor();
     final m = ((timeSeconds % 3600) / 60).floor();
     final s = (timeSeconds % 60).round();
-    
+
     if (h > 0) {
       return '${h}h ${m}m ${s}s';
     }
@@ -50,6 +50,6 @@ class CalculationResult {
   String get formattedPace {
     final m = (paceSecondsPerKm / 60).floor();
     final s = (paceSecondsPerKm % 60).round();
-    return '${m}:${s.toString().padLeft(2, '0')} min/km';
+    return """$m'${s.toString().padLeft(2, '0')}" min/km""";
   }
 }

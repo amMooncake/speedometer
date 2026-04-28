@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:speedometer_mobile/res/dimens.dart';
+import 'package:speedometer_mobile/res/toast.dart';
 import 'package:speedometer_mobile/viewmodels/calculator/calculation_history_view_model.dart';
 import 'package:speedometer_mobile/views/calculator/widgets/wheel_slider.dart';
 
@@ -209,14 +210,14 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
             AppDimens.gap(1),
             Text(
               'Jak to działa?',
-              style: Theme.of(context).textTheme.titleMedium,
+              style: t.textTheme.titleMedium,
             ),
             AppDimens.gap(1),
             Text(
               'Kalkulator automatycznie oblicza pole oznaczone na pomarańczowo. '
               'Gdy zmienisz dowolną wartość, system traktuje ją jako "wejściową" i aktualizuje '
               'tę, której nie dotykałeś najdłużej.',
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              style: t.textTheme.bodySmall?.copyWith(
                 color: Colors.grey,
                 fontStyle: FontStyle.italic,
               ),
@@ -234,10 +235,8 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     double totalSeconds = (_timeHour * 3600.0) + (_timeMin * 60.0) + _timeSec;
     double paceSecondsPerKm = (_paceMin * 60.0) + _paceSec;
 
-    if (totalMeters <= 0 || totalSeconds <= 0) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Ustaw dystans i czas przed zapisem!')),
-      );
+    if (totalMeters <= 0 || totalSeconds <= 0 || paceSecondsPerKm <= 0) {
+      ToastManager.showErrorToast(context, 'Ustaw dystans i czas przed zapisem!');
       return;
     }
 
@@ -247,9 +246,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       paceSecondsPerKm: paceSecondsPerKm,
     );
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Zapisano wynik!')),
-    );
+    ToastManager.showSuccessToast(context, 'Zapisano wynik!');
   }
 
   void _showHistory(BuildContext context) {
@@ -278,6 +275,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   ) {
     final bool useStep10 = count > 100;
     final int displayedCount = useStep10 ? (count / 10).ceil() : count;
+    final t = Theme.of(context);
 
     return SizedBox(
       height: 50,
@@ -287,7 +285,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
             flex: 1,
             child: Text(
               label,
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: t.textTheme.bodyMedium,
             ),
           ),
           SizedBox(
@@ -337,7 +335,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                     width: 2,
                     height: isMajor ? 24 : 14,
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.onSurface.withAlpha(isMajor ? 80 : 40),
+                      color: t.colorScheme.onSurface.withAlpha(isMajor ? 80 : 40),
                       borderRadius: BorderRadius.circular(1),
                     ),
                   ),
@@ -419,13 +417,13 @@ class _HistorySheet extends StatelessWidget {
                   controller: scrollController,
                   padding: const EdgeInsets.all(16),
                   itemCount: history.length,
-                  separatorBuilder: (_, __) => const Divider(),
-                  itemBuilder: (context, index) {
+                  separatorBuilder: (_, _) => const Divider(),
+                  itemBuilder: (_, index) {
                     final item = history[index];
                     return ListTile(
                       contentPadding: EdgeInsets.zero,
                       title: Text(
-                        '${item.formattedDistance} @ ${item.formattedPace}',
+                        '${item.formattedDistance}   ${item.formattedPace}',
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text(item.formattedTime),
