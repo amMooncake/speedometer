@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:speedometer_mobile/res/dimens.dart';
+import 'package:speedometer_mobile/viewmodels/calculator/calculation_history_view_model.dart';
 import 'package:speedometer_mobile/views/calculator/widgets/wheel_slider.dart';
 
 enum CalculatorField { distance, time, pace }
@@ -135,69 +137,126 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final t = Theme.of(context);
     return Padding(
       padding: AppDimens.paddingHorizontal(4),
-      child: Column(
-        crossAxisAlignment: .start,
-        children: [
-          AppDimens.gap(2),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: .start,
+          children: [
+            AppDimens.gap(2),
 
-          // time
-          _buildSectionTitle('Czas', CalculatorField.time),
-          _buildPicker('godziny', 24, _timeHourController, (val) {
-            _timeHour = val;
-            _onFieldEdited(CalculatorField.time);
-          }),
-          _buildPicker('minuty', 60, _timeMinController, (val) {
-            _timeMin = val;
-            _onFieldEdited(CalculatorField.time);
-          }),
-          _buildPicker('sekundy', 60, _timeSecController, (val) {
-            _timeSec = val;
-            _onFieldEdited(CalculatorField.time);
-          }),
+            // time
+            _buildSectionTitle('Czas', CalculatorField.time),
+            _buildPicker('godziny', 24, _timeHourController, (val) {
+              _timeHour = val;
+              _onFieldEdited(CalculatorField.time);
+            }),
+            _buildPicker('minuty', 60, _timeMinController, (val) {
+              _timeMin = val;
+              _onFieldEdited(CalculatorField.time);
+            }),
+            _buildPicker('sekundy', 60, _timeSecController, (val) {
+              _timeSec = val;
+              _onFieldEdited(CalculatorField.time);
+            }),
 
-          // distance
-          AppDimens.gap(2),
-          _buildSectionTitle('Dystans', CalculatorField.distance),
-          _buildPicker('Km', 100, _distanceKmController, (val) {
-            _distanceKm = val;
-            _onFieldEdited(CalculatorField.distance);
-          }),
-          _buildPicker('m', 1000, _distanceMController, (val) {
-            _distanceM = val;
-            _onFieldEdited(CalculatorField.distance);
-          }),
+            // distance
+            AppDimens.gap(2),
+            _buildSectionTitle('Dystans', CalculatorField.distance),
+            _buildPicker('Km', 100, _distanceKmController, (val) {
+              _distanceKm = val;
+              _onFieldEdited(CalculatorField.distance);
+            }),
+            _buildPicker('m', 1000, _distanceMController, (val) {
+              _distanceM = val;
+              _onFieldEdited(CalculatorField.distance);
+            }),
 
-          // pace
-          AppDimens.gap(2),
-          _buildSectionTitle('Tępo', CalculatorField.pace),
-          _buildPicker('Minuty', 60, _paceMinController, (val) {
-            _paceMin = val;
-            _onFieldEdited(CalculatorField.pace);
-          }),
-          _buildPicker('sekundy', 60, _paceSecController, (val) {
-            _paceSec = val;
-            _onFieldEdited(CalculatorField.pace);
-          }),
-          const Divider(),
-          AppDimens.gap(1),
-          Text(
-            'Jak to działa?',
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-          AppDimens.gap(1),
-          Text(
-            'Kalkulator automatycznie oblicza pole oznaczone na pomarańczowo. '
-            'Gdy zmienisz dowolną wartość, system traktuje ją jako "wejściową" i aktualizuje '
-            'tę, której nie dotykałeś najdłużej.',
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: Colors.grey,
-              fontStyle: FontStyle.italic,
+            // pace
+            AppDimens.gap(2),
+            _buildSectionTitle('Tępo', CalculatorField.pace),
+            _buildPicker('Minuty', 60, _paceMinController, (val) {
+              _paceMin = val;
+              _onFieldEdited(CalculatorField.pace);
+            }),
+            _buildPicker('sekundy', 60, _paceSecController, (val) {
+              _paceSec = val;
+              _onFieldEdited(CalculatorField.pace);
+            }),
+            AppDimens.gap(2),
+            Row(
+              children: [
+                Expanded(
+                  child: FilledButton.icon(
+                    onPressed: () => _saveCurrentResult(context),
+                    icon: const Icon(Icons.save),
+                    label: const Text('Zapisz'),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: OutlinedButton.icon(
+                    onPressed: () => _showHistory(context),
+                    icon: const Icon(Icons.history),
+                    label: const Text('Historia'),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
+            AppDimens.gap(2),
+            const Divider(),
+            AppDimens.gap(1),
+            Text(
+              'Jak to działa?',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            AppDimens.gap(1),
+            Text(
+              'Kalkulator automatycznie oblicza pole oznaczone na pomarańczowo. '
+              'Gdy zmienisz dowolną wartość, system traktuje ją jako "wejściową" i aktualizuje '
+              'tę, której nie dotykałeś najdłużej.',
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Colors.grey,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+          ],
+        ),
       ),
+    );
+  }
+
+  void _saveCurrentResult(BuildContext context) {
+    final historyVM = context.read<CalculationHistoryViewModel>();
+
+    double totalMeters = (_distanceKm * 1000.0) + _distanceM;
+    double totalSeconds = (_timeHour * 3600.0) + (_timeMin * 60.0) + _timeSec;
+    double paceSecondsPerKm = (_paceMin * 60.0) + _paceSec;
+
+    if (totalMeters <= 0 || totalSeconds <= 0) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Ustaw dystans i czas przed zapisem!')),
+      );
+      return;
+    }
+
+    historyVM.addResult(
+      distanceMeters: totalMeters,
+      timeSeconds: totalSeconds,
+      paceSecondsPerKm: paceSecondsPerKm,
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Zapisano wynik!')),
+    );
+  }
+
+  void _showHistory(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => const _HistorySheet(),
     );
   }
 
@@ -278,9 +337,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                     width: 2,
                     height: isMajor ? 24 : 14,
                     decoration: BoxDecoration(
-                      color: Theme.of(
-                        context,
-                      ).colorScheme.onSurface.withOpacity(isMajor ? 0.8 : 0.4),
+                      color: Theme.of(context).colorScheme.onSurface.withAlpha(isMajor ? 80 : 40),
                       borderRadius: BorderRadius.circular(1),
                     ),
                   ),
@@ -306,5 +363,83 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     _paceSecController.dispose();
 
     super.dispose();
+  }
+}
+
+class _HistorySheet extends StatelessWidget {
+  const _HistorySheet();
+
+  @override
+  Widget build(BuildContext context) {
+    final history = context.watch<CalculationHistoryViewModel>().history;
+
+    return DraggableScrollableSheet(
+      initialChildSize: 0.6,
+      minChildSize: 0.4,
+      maxChildSize: 0.9,
+      expand: false,
+      builder: (context, scrollController) {
+        return Column(
+          children: [
+            Container(
+              margin: const EdgeInsets.symmetric(vertical: 12),
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Historia wyników',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  TextButton(
+                    onPressed: () => context.read<CalculationHistoryViewModel>().clearHistory(),
+                    child: const Text('Wyczyść'),
+                  ),
+                ],
+              ),
+            ),
+            const Divider(),
+            if (history.isEmpty)
+              const Expanded(
+                child: Center(
+                  child: Text('Brak zapisanych wyników'),
+                ),
+              )
+            else
+              Expanded(
+                child: ListView.separated(
+                  controller: scrollController,
+                  padding: const EdgeInsets.all(16),
+                  itemCount: history.length,
+                  separatorBuilder: (_, __) => const Divider(),
+                  itemBuilder: (context, index) {
+                    final item = history[index];
+                    return ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(
+                        '${item.formattedDistance} @ ${item.formattedPace}',
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text(item.formattedTime),
+                      trailing: Text(
+                        '${item.dateTime.day}.${item.dateTime.month}.${item.dateTime.year}',
+                        style: const TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
+                    );
+                  },
+                ),
+              ),
+          ],
+        );
+      },
+    );
   }
 }

@@ -32,18 +32,17 @@ class WheelSlider extends StatelessWidget {
         // Selection highlight
         Container(
           width: AppDimens.baseSize * 8,
-          height: AppDimens.baseSize * 5,
+          height: AppDimens.baseSize * 4,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               stops: [0, 0.4, 0.6, 1],
               colors: [
-                t.secondaryHeaderColor.withAlpha(0),
-                t.secondaryHeaderColor,
-                t.secondaryHeaderColor,
-                t.secondaryHeaderColor.withAlpha(0),
+                t.colorScheme.primary.withAlpha(0),
+                t.colorScheme.primary.withAlpha(100),
+                t.colorScheme.primary.withAlpha(100),
+                t.colorScheme.primary.withAlpha(0),
               ],
             ),
-            color: t.secondaryHeaderColor,
           ),
         ),
         // The Wheel
