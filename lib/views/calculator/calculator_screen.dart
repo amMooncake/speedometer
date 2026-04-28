@@ -171,7 +171,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
 
           // pace
           AppDimens.gap(2),
-          _buildSectionTitle('Pace', CalculatorField.pace),
+          _buildSectionTitle('Tępo', CalculatorField.pace),
           _buildPicker('Minuty', 60, _paceMinController, (val) {
             _paceMin = val;
             _onFieldEdited(CalculatorField.pace);
@@ -231,23 +231,57 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
               style: Theme.of(context).textTheme.bodyMedium,
             ),
           ),
+          SizedBox(
+            width: 45,
+            child: AnimatedBuilder(
+              animation: controller,
+              builder: (context, child) {
+                int currentIndex = 0;
+                if (controller.hasClients) {
+                  currentIndex = controller.selectedItem;
+                } else {
+                  currentIndex = controller.initialItem;
+                }
+
+                if (currentIndex < 0) currentIndex = 0;
+                if (currentIndex >= displayedCount) currentIndex = displayedCount - 1;
+
+                final value = useStep10 ? currentIndex * 10 : currentIndex;
+                return Text(
+                  value.toString(),
+                  style: const TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  textAlign: TextAlign.center,
+                );
+              },
+            ),
+          ),
           Expanded(
-            flex: 4,
+            flex: 3,
             child: WheelSlider(
               scrollDirection: Axis.horizontal,
               itemCount: displayedCount,
               controller: controller,
+              itemExtent: 20, // Tighter spacing for lines
               onSelectedItemChanged: (val) {
-                onChanged(useStep10 ? val * 10 : val);
+                int clampedVal = val;
+                if (clampedVal < 0) clampedVal = 0;
+                if (clampedVal >= displayedCount) clampedVal = displayedCount - 1;
+                onChanged(useStep10 ? clampedVal * 10 : clampedVal);
               },
               itemBuilder: (context, index) {
-                final value = useStep10 ? index * 10 : index;
+                final isMajor = index % 5 == 0;
                 return Center(
-                  child: Text(
-                    value.toString(),
-                    style: TextStyle(
-                      fontSize: value > 99 ? 19 : 22,
-                      fontWeight: FontWeight.w500,
+                  child: Container(
+                    width: 2,
+                    height: isMajor ? 24 : 14,
+                    decoration: BoxDecoration(
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.onSurface.withOpacity(isMajor ? 0.8 : 0.4),
+                      borderRadius: BorderRadius.circular(1),
                     ),
                   ),
                 );

@@ -56,13 +56,11 @@ class WheelSlider extends StatelessWidget {
             physics: const FixedExtentScrollPhysics(),
             onSelectedItemChanged: onSelectedItemChanged,
             controller: controller ?? FixedExtentScrollController(initialItem: initialIndex),
-            childDelegate: ListWheelChildLoopingListDelegate(
-              children: List.generate(
-                itemCount,
-                (index) => RotatedBox(
-                  quarterTurns: isHorizontal ? 1 : 0,
-                  child: itemBuilder(context, index),
-                ),
+            childDelegate: ListWheelChildBuilderDelegate(
+              childCount: itemCount,
+              builder: (context, index) => RotatedBox(
+                quarterTurns: isHorizontal ? 1 : 0,
+                child: itemBuilder(context, index),
               ),
             ),
           ),
