@@ -52,8 +52,8 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Rekordy',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.info),
-            label: 'About',
+            icon: Icon(Icons.settings),
+            label: 'Ustawienia',
           ),
         ],
         currentIndex: _selectedIndex,

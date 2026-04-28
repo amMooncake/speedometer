@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:speedometer_mobile/res/dimens.dart';
+import 'package:speedometer_mobile/viewmodels/theme/theme_model.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -7,12 +9,30 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = Theme.of(context);
+    final themeViewModel = context.watch<ThemeViewModel>();
     return Padding(
       padding: AppDimens.paddingAll(4),
       child: Column(
-        mainAxisAlignment: .spaceBetween,
         children: [
-          Image.asset("assets/logo.png"),
+          Expanded(
+            child: Column(
+              children: [
+                SwitchListTile(
+                  title: const Text('Tryb ciemny'),
+                  secondary: Icon(
+                    themeViewModel.isDark ? Icons.dark_mode : Icons.light_mode,
+                  ),
+                  value: themeViewModel.isDark,
+                  onChanged: (bool value) {
+                    themeViewModel.toggleTheme();
+                  },
+                ),
+                const Divider(),
+              ],
+            ),
+          ),
+          Image.asset("assets/logo.png", height: 100),
+          AppDimens.gap(2),
           _buildCredits(t),
         ],
       ),
