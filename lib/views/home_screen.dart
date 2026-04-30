@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 //screens
 import 'package:speedometer_mobile/views/calculator/calculator_screen.dart';
-import 'package:speedometer_mobile/views/records/records_screen.dart';
+// import 'package:speedometer_mobile/views/records/records_screen.dart';
 import 'package:speedometer_mobile/views/settings/settings_screen.dart';
 import 'package:speedometer_mobile/views/speed/speed_screen.dart';
 
@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   static const List<Widget> _widgetOptions = <Widget>[
     CalculatorScreen(),
     SpeedScreen(),
-    RecordsScreen(),
+    // RecordsScreen(),
     SettingsScreen(),
   ];
 
@@ -47,10 +47,10 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.speed),
             label: 'Prędkość',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.emoji_events),
-            label: 'Rekordy',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.emoji_events),
+          //   label: 'Rekordy',
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Ustawienia',

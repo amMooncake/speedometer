@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Antigravity" xmlns="http://www.topografix.com/GPX/1/1">
+  <trk>
+    <name>Speedometer Test Track</name>
+    <trkseg>
+      <trkpt lat="52.229700" lon="21.012200">
+        <time>2024-01-01T10:00:00Z</time>
+        <!-- speed: 0.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.229706" lon="21.012200">
+        <time>2024-01-01T10:00:01Z</time>
+        <!-- speed: 2.5 km/h -->
+      </trkpt>
+      <trkpt lat="52.229719" lon="21.012200">
+        <time>2024-01-01T10:00:02Z</time>
+        <!-- speed: 5.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.229737" lon="21.012200">
+        <time>2024-01-01T10:00:03Z</time>
+        <!-- speed: 7.5 km/h -->
+      </trkpt>
+      <trkpt lat="52.229762" lon="21.012200">
+        <time>2024-01-01T10:00:04Z</time>
+        <!-- speed: 10.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.229794" lon="21.012200">
+        <time>2024-01-01T10:00:05Z</time>
+        <!-- speed: 12.5 km/h -->
+      </trkpt>
+      <trkpt lat="52.229831" lon="21.012200">
+        <time>2024-01-01T10:00:06Z</time>
+        <!-- speed: 15.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.229875" lon="21.012200">
+        <time>2024-01-01T10:00:07Z</time>
+        <!-- speed: 17.5 km/h -->
+      </trkpt>
+      <trkpt lat="52.229925" lon="21.012200">
+        <time>2024-01-01T10:00:08Z</time>
+        <!-- speed: 20.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.229981" lon="21.012200">
+        <time>2024-01-01T10:00:09Z</time>
+        <!-- speed: 22.5 km/h -->
+      </trkpt>
+      <trkpt lat="52.230043" lon="21.012200">
+        <time>2024-01-01T10:00:10Z</time>
+        <!-- speed: 25.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.230112" lon="21.012200">
+        <time>2024-01-01T10:00:11Z</time>
+        <!-- speed: 27.5 km/h -->
+      </trkpt>
+      <trkpt lat="52.230187" lon="21.012200">
+        <time>2024-01-01T10:00:12Z</time>
+        <!-- speed: 30.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.230268" lon="21.012200">
+        <time>2024-01-01T10:00:13Z</time>
+        <!-- speed: 32.5 km/h -->
+      </trkpt>
+      <trkpt lat="52.230355" lon="21.012200">
+        <time>2024-01-01T10:00:14Z</time>
+        <!-- speed: 35.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.230449" lon="21.012200">
+        <time>2024-01-01T10:00:15Z</time>
+        <!-- speed: 37.5 km/h -->
+      </trkpt>
+      <trkpt lat="52.230548" lon="21.012200">
+        <time>2024-01-01T10:00:16Z</time>
+        <!-- speed: 40.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.230654" lon="21.012200">
+        <time>2024-01-01T10:00:17Z</time>
+        <!-- speed: 42.5 km/h -->
+      </trkpt>
+      <trkpt lat="52.230767" lon="21.012200">
+        <time>2024-01-01T10:00:18Z</time>
+        <!-- speed: 45.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.230885" lon="21.012200">
+        <time>2024-01-01T10:00:19Z</time>
+        <!-- speed: 47.5 km/h -->
+      </trkpt>
+      <trkpt lat="52.231010" lon="21.012200">
+        <time>2024-01-01T10:00:20Z</time>
+        <!-- speed: 50.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.231135" lon="21.012200">
+        <time>2024-01-01T10:00:21Z</time>
+        <!-- speed: 50.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.231260" lon="21.012200">
+        <time>2024-01-01T10:00:22Z</time>
+        <!-- speed: 50.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.231384" lon="21.012200">
+        <time>2024-01-01T10:00:23Z</time>
+        <!-- speed: 50.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.231509" lon="21.012200">
+        <time>2024-01-01T10:00:24Z</time>
+        <!-- speed: 50.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.231634" lon="21.012200">
+        <time>2024-01-01T10:00:25Z</time>
+        <!-- speed: 50.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.231759" lon="21.012200">
+        <time>2024-01-01T10:00:26Z</time>
+        <!-- speed: 50.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.231883" lon="21.012200">
+        <time>2024-01-01T10:00:27Z</time>
+        <!-- speed: 50.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.232008" lon="21.012200">
+        <time>2024-01-01T10:00:28Z</time>
+        <!-- speed: 50.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.232133" lon="21.012200">
+        <time>2024-01-01T10:00:29Z</time>
+        <!-- speed: 50.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.232258" lon="21.012200">
+        <time>2024-01-01T10:00:30Z</time>
+        <!-- speed: 50.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.232382" lon="21.012200">
+        <time>2024-01-01T10:00:31Z</time>
+        <!-- speed: 50.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.232507" lon="21.012200">
+        <time>2024-01-01T10:00:32Z</time>
+        <!-- speed: 50.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.232632" lon="21.012200">
+        <time>2024-01-01T10:00:33Z</time>
+        <!-- speed: 50.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.232757" lon="21.012200">
+        <time>2024-01-01T10:00:34Z</time>
+        <!-- speed: 50.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.232882" lon="21.012200">
+        <time>2024-01-01T10:00:35Z</time>
+        <!-- speed: 50.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.233006" lon="21.012200">
+        <time>2024-01-01T10:00:36Z</time>
+        <!-- speed: 50.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.233131" lon="21.012200">
+        <time>2024-01-01T10:00:37Z</time>
+        <!-- speed: 50.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.233256" lon="21.012200">
+        <time>2024-01-01T10:00:38Z</time>
+        <!-- speed: 50.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.233381" lon="21.012200">
+        <time>2024-01-01T10:00:39Z</time>
+        <!-- speed: 50.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.233505" lon="21.012200">
+        <time>2024-01-01T10:00:40Z</time>
+        <!-- speed: 50.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.233639" lon="21.012200">
+        <time>2024-01-01T10:00:41Z</time>
+        <!-- speed: 53.5 km/h -->
+      </trkpt>
+      <trkpt lat="52.233781" lon="21.012200">
+        <time>2024-01-01T10:00:42Z</time>
+        <!-- speed: 57.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.233932" lon="21.012200">
+        <time>2024-01-01T10:00:43Z</time>
+        <!-- speed: 60.5 km/h -->
+      </trkpt>
+      <trkpt lat="52.234092" lon="21.012200">
+        <time>2024-01-01T10:00:44Z</time>
+        <!-- speed: 64.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.234260" lon="21.012200">
+        <time>2024-01-01T10:00:45Z</time>
+        <!-- speed: 67.5 km/h -->
+      </trkpt>
+      <trkpt lat="52.234437" lon="21.012200">
+        <time>2024-01-01T10:00:46Z</time>
+        <!-- speed: 71.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.234623" lon="21.012200">
+        <time>2024-01-01T10:00:47Z</time>
+        <!-- speed: 74.5 km/h -->
+      </trkpt>
+      <trkpt lat="52.234818" lon="21.012200">
+        <time>2024-01-01T10:00:48Z</time>
+        <!-- speed: 78.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.235021" lon="21.012200">
+        <time>2024-01-01T10:00:49Z</time>
+        <!-- speed: 81.5 km/h -->
+      </trkpt>
+      <trkpt lat="52.235233" lon="21.012200">
+        <time>2024-01-01T10:00:50Z</time>
+        <!-- speed: 85.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.235454" lon="21.012200">
+        <time>2024-01-01T10:00:51Z</time>
+        <!-- speed: 88.5 km/h -->
+      </trkpt>
+      <trkpt lat="52.235684" lon="21.012200">
+        <time>2024-01-01T10:00:52Z</time>
+        <!-- speed: 92.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.235922" lon="21.012200">
+        <time>2024-01-01T10:00:53Z</time>
+        <!-- speed: 95.5 km/h -->
+      </trkpt>
+      <trkpt lat="52.236169" lon="21.012200">
+        <time>2024-01-01T10:00:54Z</time>
+        <!-- speed: 99.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.236425" lon="21.012200">
+        <time>2024-01-01T10:00:55Z</time>
+        <!-- speed: 102.5 km/h -->
+      </trkpt>
+      <trkpt lat="52.236689" lon="21.012200">
+        <time>2024-01-01T10:00:56Z</time>
+        <!-- speed: 106.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.236963" lon="21.012200">
+        <time>2024-01-01T10:00:57Z</time>
+        <!-- speed: 109.5 km/h -->
+      </trkpt>
+      <trkpt lat="52.237245" lon="21.012200">
+        <time>2024-01-01T10:00:58Z</time>
+        <!-- speed: 113.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.237535" lon="21.012200">
+        <time>2024-01-01T10:00:59Z</time>
+        <!-- speed: 116.5 km/h -->
+      </trkpt>
+      <trkpt lat="52.237835" lon="21.012200">
+        <time>2024-01-01T10:01:00Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.238134" lon="21.012200">
+        <time>2024-01-01T10:01:01Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.238434" lon="21.012200">
+        <time>2024-01-01T10:01:02Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.238733" lon="21.012200">
+        <time>2024-01-01T10:01:03Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.239032" lon="21.012200">
+        <time>2024-01-01T10:01:04Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.239332" lon="21.012200">
+        <time>2024-01-01T10:01:05Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.239631" lon="21.012200">
+        <time>2024-01-01T10:01:06Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.239931" lon="21.012200">
+        <time>2024-01-01T10:01:07Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.240230" lon="21.012200">
+        <time>2024-01-01T10:01:08Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.240530" lon="21.012200">
+        <time>2024-01-01T10:01:09Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.240829" lon="21.012200">
+        <time>2024-01-01T10:01:10Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.241129" lon="21.012200">
+        <time>2024-01-01T10:01:11Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.241428" lon="21.012200">
+        <time>2024-01-01T10:01:12Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.241727" lon="21.012200">
+        <time>2024-01-01T10:01:13Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.242027" lon="21.012200">
+        <time>2024-01-01T10:01:14Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.242326" lon="21.012200">
+        <time>2024-01-01T10:01:15Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.242626" lon="21.012200">
+        <time>2024-01-01T10:01:16Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.242925" lon="21.012200">
+        <time>2024-01-01T10:01:17Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.243225" lon="21.012200">
+        <time>2024-01-01T10:01:18Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.243524" lon="21.012200">
+        <time>2024-01-01T10:01:19Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.243824" lon="21.012200">
+        <time>2024-01-01T10:01:20Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.244123" lon="21.012200">
+        <time>2024-01-01T10:01:21Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.244422" lon="21.012200">
+        <time>2024-01-01T10:01:22Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.244722" lon="21.012200">
+        <time>2024-01-01T10:01:23Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.245021" lon="21.012200">
+        <time>2024-01-01T10:01:24Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.245321" lon="21.012200">
+        <time>2024-01-01T10:01:25Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.245620" lon="21.012200">
+        <time>2024-01-01T10:01:26Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.245920" lon="21.012200">
+        <time>2024-01-01T10:01:27Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.246219" lon="21.012200">
+        <time>2024-01-01T10:01:28Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.246518" lon="21.012200">
+        <time>2024-01-01T10:01:29Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.246818" lon="21.012200">
+        <time>2024-01-01T10:01:30Z</time>
+        <!-- speed: 120.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.247102" lon="21.012200">
+        <time>2024-01-01T10:01:31Z</time>
+        <!-- speed: 114.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.247372" lon="21.012200">
+        <time>2024-01-01T10:01:32Z</time>
+        <!-- speed: 108.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.247626" lon="21.012200">
+        <time>2024-01-01T10:01:33Z</time>
+        <!-- speed: 102.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.247866" lon="21.012200">
+        <time>2024-01-01T10:01:34Z</time>
+        <!-- speed: 96.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.248091" lon="21.012200">
+        <time>2024-01-01T10:01:35Z</time>
+        <!-- speed: 90.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.248300" lon="21.012200">
+        <time>2024-01-01T10:01:36Z</time>
+        <!-- speed: 84.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.248495" lon="21.012200">
+        <time>2024-01-01T10:01:37Z</time>
+        <!-- speed: 78.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.248674" lon="21.012200">
+        <time>2024-01-01T10:01:38Z</time>
+        <!-- speed: 72.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.248839" lon="21.012200">
+        <time>2024-01-01T10:01:39Z</time>
+        <!-- speed: 66.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.248989" lon="21.012200">
+        <time>2024-01-01T10:01:40Z</time>
+        <!-- speed: 60.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.249124" lon="21.012200">
+        <time>2024-01-01T10:01:41Z</time>
+        <!-- speed: 54.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.249243" lon="21.012200">
+        <time>2024-01-01T10:01:42Z</time>
+        <!-- speed: 48.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.249348" lon="21.012200">
+        <time>2024-01-01T10:01:43Z</time>
+        <!-- speed: 42.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.249438" lon="21.012200">
+        <time>2024-01-01T10:01:44Z</time>
+        <!-- speed: 36.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.249513" lon="21.012200">
+        <time>2024-01-01T10:01:45Z</time>
+        <!-- speed: 30.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.249573" lon="21.012200">
+        <time>2024-01-01T10:01:46Z</time>
+        <!-- speed: 24.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.249618" lon="21.012200">
+        <time>2024-01-01T10:01:47Z</time>
+        <!-- speed: 18.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.249648" lon="21.012200">
+        <time>2024-01-01T10:01:48Z</time>
+        <!-- speed: 12.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.249663" lon="21.012200">
+        <time>2024-01-01T10:01:49Z</time>
+        <!-- speed: 6.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.249663" lon="21.012200">
+        <time>2024-01-01T10:01:50Z</time>
+        <!-- speed: 0.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.249663" lon="21.012200">
+        <time>2024-01-01T10:01:51Z</time>
+        <!-- speed: 0.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.249663" lon="21.012200">
+        <time>2024-01-01T10:01:52Z</time>
+        <!-- speed: 0.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.249663" lon="21.012200">
+        <time>2024-01-01T10:01:53Z</time>
+        <!-- speed: 0.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.249663" lon="21.012200">
+        <time>2024-01-01T10:01:54Z</time>
+        <!-- speed: 0.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.249663" lon="21.012200">
+        <time>2024-01-01T10:01:55Z</time>
+        <!-- speed: 0.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.249663" lon="21.012200">
+        <time>2024-01-01T10:01:56Z</time>
+        <!-- speed: 0.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.249663" lon="21.012200">
+        <time>2024-01-01T10:01:57Z</time>
+        <!-- speed: 0.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.249663" lon="21.012200">
+        <time>2024-01-01T10:01:58Z</time>
+        <!-- speed: 0.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.249663" lon="21.012200">
+        <time>2024-01-01T10:01:59Z</time>
+        <!-- speed: 0.0 km/h -->
+      </trkpt>
+      <trkpt lat="52.249663" lon="21.012200">
+        <time>2024-01-01T10:02:00Z</time>
+        <!-- speed: 0.0 km/h -->
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>
