@@ -69,6 +69,7 @@ class _SignInScreenState extends State<SignInScreen> {
               MyTextField(
                 controller: passwordController,
                 hintText: 'Hasło',
+                textInputAction: TextInputAction.done,
                 obscureText: obscurePassword,
                 keyboardType: TextInputType.visiblePassword,
                 prefixIcon: Icons.lock,

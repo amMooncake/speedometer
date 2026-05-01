@@ -42,15 +42,35 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 AppDimens.gap(4),
                 SwitchListTile(
-                  title: themeViewModel.isDark ? Text('Tryb ciemny') : Text('Tryb jasny'),
-                  secondary: Icon(
-                    themeViewModel.isDark ? Icons.dark_mode : Icons.light_mode,
-                  ),
-                  value: themeViewModel.isDark,
+                  title: const Text('Zgodnie z systemem'),
+                  secondary: const Icon(Icons.sync),
+                  value: themeViewModel.themeMode == ThemeMode.system,
                   onChanged: (bool value) {
-                    themeViewModel.toggleTheme();
+                    if (value) {
+                      themeViewModel.setThemeMode(ThemeMode.system);
+                    } else {
+                      final brightness = MediaQuery.of(context).platformBrightness;
+                      themeViewModel.setThemeMode(
+                        brightness == Brightness.dark ? ThemeMode.dark : ThemeMode.light,
+                      );
+                    }
                   },
                 ),
+                if (themeViewModel.themeMode != ThemeMode.system)
+                  SwitchListTile(
+                    title: themeViewModel.themeMode == ThemeMode.dark
+                        ? const Text('Tryb ciemny')
+                        : const Text('Tryb jasny'),
+                    secondary: Icon(
+                      themeViewModel.themeMode == ThemeMode.dark
+                          ? Icons.dark_mode
+                          : Icons.light_mode,
+                    ),
+                    value: themeViewModel.themeMode == ThemeMode.dark,
+                    onChanged: (bool value) {
+                      themeViewModel.setThemeMode(value ? ThemeMode.dark : ThemeMode.light);
+                    },
+                  ),
                 const Divider(),
                 ListTile(
                   title: const Text('Wyloguj', style: TextStyle(color: Colors.red)),
@@ -76,10 +96,11 @@ Widget _buildCredits(ThemeData t) {
   return RichText(
     textAlign: TextAlign.center,
     text: TextSpan(
-      style: t.textTheme.bodyMedium?.copyWith(color: Colors.grey, height: 1.5),
+      style: t.textTheme.bodyMedium?.copyWith(color: Colors.grey, height: 1.5, fontSize: 12),
       children: [
         TextSpan(
-          text: 'Aplikacja stworzona przez Aleksego Malawskiego i Igora Nejmana dla WSEI z ',
+          text:
+              'Aplikacja stworzona przez Aleksego Malawskiego \n i Igora Nejmana dla WSEI Kraków z ',
         ),
         WidgetSpan(
           alignment: PlaceholderAlignment.middle,

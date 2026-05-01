@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:speedometer_mobile/res/app_dimens.dart';
 import '../../../blocs/authentication_bloc/authentication_bloc.dart';
 import '../blocs/sign_in_bloc/sign_in_bloc.dart';
@@ -27,62 +28,68 @@ class _WelcomeScreenState extends State<WelcomeScreen> with TickerProviderStateM
   Widget build(BuildContext context) {
     final t = Theme.of(context);
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: .center,
-          children: [
-            Text(
-              'Witaj w speedometer!',
-              style: t.textTheme.headlineLarge?.copyWith(),
-            ),
-            AppDimens.gap(2),
-            Padding(
-              padding: AppDimens.paddingHorizontal(3),
-              child: TabBar(
-                controller: tabController,
-                unselectedLabelColor: Theme.of(context).colorScheme.onSurface.withAlpha(155),
-                labelColor: Theme.of(context).colorScheme.onSurface,
-                tabs: [
-                  Padding(
-                    padding: AppDimens.paddingAll(2),
-                    child: Text(
-                      'Zaloguj',
-                      style: TextStyle(
-                        fontSize: 18,
+      body: SingleChildScrollView(
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: Column(
+            mainAxisAlignment: .center,
+            children: [
+              AppDimens.gap(10),
+              Text(
+                'Witaj w speedometer!',
+                style: t.textTheme.headlineLarge?.copyWith(
+                  fontWeight: FontWeight(700),
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+              AppDimens.gap(2),
+              Padding(
+                padding: AppDimens.paddingHorizontal(3),
+                child: TabBar(
+                  controller: tabController,
+                  unselectedLabelColor: Theme.of(context).colorScheme.onSurface.withAlpha(155),
+                  labelColor: Theme.of(context).colorScheme.onSurface,
+                  tabs: [
+                    Padding(
+                      padding: AppDimens.paddingAll(2),
+                      child: Text(
+                        'Zaloguj',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: AppDimens.paddingAll(2),
-                    child: Text(
-                      'Zarejestruj',
-                      style: TextStyle(
-                        fontSize: 18,
+                    Padding(
+                      padding: AppDimens.paddingAll(2),
+                      child: Text(
+                        'Zarejestruj',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            SizedBox(
-              height: 500,
-              child: TabBarView(
-                controller: tabController,
-                children: [
-                  BlocProvider<SignInBloc>(
-                    create: (context) =>
-                        SignInBloc(context.read<AuthenticationBloc>().userRepository),
-                    child: const SignInScreen(),
-                  ),
-                  BlocProvider<SignUpBloc>(
-                    create: (context) =>
-                        SignUpBloc(context.read<AuthenticationBloc>().userRepository),
-                    child: const SignUpScreen(),
-                  ),
-                ],
+              Expanded(
+                child: TabBarView(
+                  controller: tabController,
+                  children: [
+                    BlocProvider<SignInBloc>(
+                      create: (context) =>
+                          SignInBloc(context.read<AuthenticationBloc>().userRepository),
+                      child: const SignInScreen(),
+                    ),
+                    BlocProvider<SignUpBloc>(
+                      create: (context) =>
+                          SignUpBloc(context.read<AuthenticationBloc>().userRepository),
+                      child: const SignUpScreen(),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

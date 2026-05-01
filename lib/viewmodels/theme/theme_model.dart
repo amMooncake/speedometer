@@ -6,7 +6,7 @@ class ThemeViewModel extends ChangeNotifier {
   static const String _themeKey = 'theme_mode';
   ThemeMode _themeMode;
 
-  ThemeViewModel({ThemeMode? initialMode}) : _themeMode = initialMode ?? ThemeMode.dark;
+  ThemeViewModel({ThemeMode? initialMode}) : _themeMode = initialMode ?? ThemeMode.system;
 
   /// get current theme mode
   ThemeMode get themeMode => _themeMode;
@@ -14,7 +14,16 @@ class ThemeViewModel extends ChangeNotifier {
   /// check if current theme is dark
   bool get isDark => _themeMode == ThemeMode.dark;
 
-  /// toggle theme
+  /// set theme explicitly
+  Future<void> setThemeMode(ThemeMode mode) async {
+    _themeMode = mode;
+    notifyListeners();
+
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt(_themeKey, _themeMode.index);
+  }
+
+  /// toggle theme (legacy support if needed)
   Future<void> toggleTheme() async {
     _themeMode = isDark ? ThemeMode.light : ThemeMode.dark;
     notifyListeners();
@@ -30,6 +39,6 @@ class ThemeViewModel extends ChangeNotifier {
     if (index != null && index < ThemeMode.values.length) {
       return ThemeMode.values[index];
     }
-    return ThemeMode.dark;
+    return ThemeMode.system;
   }
 }

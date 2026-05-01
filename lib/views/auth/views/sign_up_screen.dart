@@ -22,7 +22,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final emailController = TextEditingController();
   final nameController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  final _passwordFocusNode = FocusNode();
+  final _repeatPasswordFocusNode = FocusNode();
+  final _nameFocusNode = FocusNode();
   IconData iconPassword = Icons.visibility_off;
+
+  @override
+  void dispose() {
+    _passwordFocusNode.dispose();
+    _repeatPasswordFocusNode.dispose();
+    _nameFocusNode.dispose();
+    passwordController.dispose();
+    repeatPasswordController.dispose();
+    emailController.dispose();
+    nameController.dispose();
+    super.dispose();
+  }
+
   bool obscurePassword = true;
   bool signUpRequest = false;
 
@@ -66,6 +82,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 obscureText: false,
                 keyboardType: TextInputType.emailAddress,
                 prefixIcon: Icons.mail,
+                onFieldSubmitted: (_) => _passwordFocusNode.requestFocus(),
                 validator: (val) {
                   if (val!.isEmpty) {
                     return 'Proszę wypełnić to pole!';
@@ -80,8 +97,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 controller: passwordController,
                 hintText: 'Hasło',
                 obscureText: obscurePassword,
+                focusNode: _passwordFocusNode,
                 keyboardType: TextInputType.visiblePassword,
                 prefixIcon: Icons.lock,
+                onFieldSubmitted: (_) => _repeatPasswordFocusNode.requestFocus(),
                 onChanged: (val) {
                   if (val!.contains(RegExp(r'[A-Z]'))) {
                     setState(() {
@@ -206,8 +225,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 controller: repeatPasswordController,
                 hintText: 'Powtórz hasło',
                 obscureText: obscurePassword,
+                focusNode: _repeatPasswordFocusNode,
                 keyboardType: TextInputType.visiblePassword,
                 prefixIcon: Icons.lock,
+                onFieldSubmitted: (_) => _nameFocusNode.requestFocus(),
                 validator: (val) {
                   if (val!.isEmpty) {
                     return 'Proszę wypełnić to pole!';
@@ -235,8 +256,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 controller: nameController,
                 hintText: 'Imię',
                 obscureText: false,
+                focusNode: _nameFocusNode,
+                textInputAction: TextInputAction.done,
                 keyboardType: TextInputType.name,
                 prefixIcon: Icons.person,
+                onFieldSubmitted: (_) => _nameFocusNode.unfocus(),
                 validator: (val) {
                   if (val!.isEmpty) {
                     return 'Proszę wypełnić to pole!';
