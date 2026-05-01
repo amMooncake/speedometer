@@ -1,44 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-// import 'package:speedometer_mobile/config/theme.dart';
-import 'package:speedometer_mobile/config/theme2.dart';
+import 'package:speedometer_mobile/app_view.dart';
 import 'package:speedometer_mobile/viewmodels/theme/theme_model.dart';
-import 'package:speedometer_mobile/views/home_screen.dart';
-
-class AppColors {
-  static const primary = Colors.orange;
-}
+import 'package:user_repository/user_repository.dart';
+import 'package:speedometer_mobile/viewmodels/calculator/calculation_history_view_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:speedometer_mobile/blocs/authentication_bloc/authentication_bloc.dart';
 
 class Speedometer extends StatelessWidget {
-  const Speedometer({super.key});
+  final UserRepository userRepository;
+  final ThemeMode initialTheme;
+
+  const Speedometer({
+    required this.userRepository,
+    required this.initialTheme,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final themeViewModel = context.watch<ThemeViewModel>();
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      themeMode: themeViewModel.themeMode,
-      theme: AppTheme.lightColorScheme,
-      darkTheme: AppTheme.darkColorScheme,
-      // home: const OnboardingScreen(),
-      home: const HomeScreen(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeViewModel(initialMode: initialTheme)),
+        ChangeNotifierProvider(create: (_) => CalculationHistoryViewModel()),
+        BlocProvider(create: (_) => AuthenticationBloc(userRepository: userRepository)),
+      ],
+      child: MyAppView(userRepository: userRepository),
     );
-    // different style
-    // return MaterialApp(
-    //   debugShowCheckedModeBanner: false,
-    //   themeMode: themeViewModel.themeMode,
-    //   theme: ThemeData(
-    //     useMaterial3: true,
-    //     colorScheme: lightColorScheme,
-    //     fontFamily: '.SF Pro Text',
-    //   ),
-    //   darkTheme: ThemeData(
-    //     useMaterial3: true,
-    //     colorScheme: darkColorScheme,
-    //     fontFamily: '.SF Pro Text',
-    //   ),
-    //   // home: const OnboardingScreen(),
-    //   home: const HomeScreen(),
-    // );
   }
 }

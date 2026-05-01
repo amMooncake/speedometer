@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:speedometer_mobile/res/dimens.dart';
 import 'package:speedometer_mobile/viewmodels/theme/theme_model.dart';
+import 'package:speedometer_mobile/views/auth/blocs/sign_in_bloc/sign_in_bloc.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -25,6 +27,14 @@ class SettingsScreen extends StatelessWidget {
                   value: themeViewModel.isDark,
                   onChanged: (bool value) {
                     themeViewModel.toggleTheme();
+                  },
+                ),
+                const Divider(),
+                ListTile(
+                  title: const Text('Wyloguj', style: TextStyle(color: Colors.red)),
+                  leading: const Icon(Icons.logout, color: Colors.red),
+                  onTap: () {
+                    context.read<SignInBloc>().add(SignOutRequired());
                   },
                 ),
                 const Divider(),

@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:speedometer_mobile/app.dart';
 import 'package:speedometer_mobile/viewmodels/theme/theme_model.dart';
-import 'package:speedometer_mobile/viewmodels/calculator/calculation_history_view_model.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:user_repository/user_repository.dart';
+import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   final initialTheme = await ThemeViewModel.loadTheme();
 
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => ThemeViewModel(initialMode: initialTheme)),
-        ChangeNotifierProvider(create: (_) => CalculationHistoryViewModel()),
-      ],
-      child: const Speedometer(),
+    Speedometer(
+      userRepository: FirebaseUserRepo(),
+      initialTheme: initialTheme,
     ),
   );
 }
