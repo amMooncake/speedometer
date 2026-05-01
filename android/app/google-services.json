@@ -29,6 +29,13 @@
             {
               "client_id": "864715072197-s0jn67spetbsa6pj5t5c0p0rao7jduc5.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "864715072197-lju2mt7gju9rcisjh4nucui264q1ce6p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.speedometerMobile"
+              }
             }
           ]
         }
