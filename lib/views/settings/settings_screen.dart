@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:speedometer_mobile/res/dimens.dart';
+import 'package:speedometer_mobile/res/app_dimens.dart';
 import 'package:speedometer_mobile/viewmodels/theme/theme_model.dart';
 import 'package:speedometer_mobile/views/auth/blocs/sign_in_bloc/sign_in_bloc.dart';
+import 'package:speedometer_mobile/blocs/authentication_bloc/authentication_bloc.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -12,13 +13,36 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = Theme.of(context);
     final themeViewModel = context.watch<ThemeViewModel>();
+    final user = context.read<AuthenticationBloc>().state.user;
+
+    String userName = 'User';
+    if (user != null) {
+      if (user.name.isNotEmpty) {
+        userName = user.name;
+      } else if (user.email.isNotEmpty) {
+        userName = user.email;
+      } else {
+        userName = 'User';
+      }
+    }
+
     return Padding(
       padding: AppDimens.paddingAll(4),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                Text(
+                  'Cześć, $userName! 👋',
+                  style: t.textTheme.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                AppDimens.gap(4),
                 SwitchListTile(
                   title: const Text('Tryb ciemny'),
                   secondary: Icon(

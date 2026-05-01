@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:speedometer_mobile/res/dimens.dart';
+import 'package:speedometer_mobile/res/app_dimens.dart';
 
 class WheelSlider extends StatelessWidget {
   final int itemCount;

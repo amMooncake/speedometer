@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:speedometer_mobile/res/dimens.dart';
+import 'package:speedometer_mobile/res/app_dimens.dart';
 import 'package:speedometer_mobile/res/toast.dart';
 import 'package:speedometer_mobile/viewmodels/calculator/calculation_history_view_model.dart';
 import 'package:speedometer_mobile/views/calculator/widgets/wheel_slider.dart';

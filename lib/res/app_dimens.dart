@@ -21,6 +21,9 @@ class AppDimens {
 
   static EdgeInsetsGeometry paddingHorizontal(double? x) =>
       EdgeInsets.symmetric(horizontal: baseSize * (x ?? 1));
+
+  static EdgeInsetsGeometry paddingSymetric(double? x, double? y) =>
+      EdgeInsets.symmetric(horizontal: baseSize * (x ?? 1), vertical: baseSize * (y ?? 1));
 }
 
 /* 

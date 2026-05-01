@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:speedometer_mobile/res/dimens.dart';
+import 'package:speedometer_mobile/res/app_dimens.dart';
 
 class SpeedScreen extends StatefulWidget {
   const SpeedScreen({super.key});

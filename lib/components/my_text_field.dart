@@ -7,7 +7,7 @@ class MyTextField extends StatelessWidget {
   final TextInputType keyboardType;
   final Widget? suffixIcon;
   final VoidCallback? onTap;
-  final Widget? prefixIcon;
+  final IconData? prefixIcon;
   final String? Function(String?)? validator;
   final FocusNode? focusNode;
   final String? errorMsg;
@@ -41,7 +41,7 @@ class MyTextField extends StatelessWidget {
       onChanged: onChanged,
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
-        prefixIcon: prefixIcon,
+        prefixIcon: Icon(prefixIcon),
         filled: true,
         hintText: hintText,
         errorText: errorMsg,
