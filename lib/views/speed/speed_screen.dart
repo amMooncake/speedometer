@@ -13,6 +13,7 @@ class SpeedScreen extends StatefulWidget {
 class _SpeedScreenState extends State<SpeedScreen> {
   StreamSubscription<Position>? _positionStreamSubscription;
   double _currentSpeed = 0.0; // Speed in m/s
+  double _maxSpeed = 0.0; // Max speed in m/s
 
   bool _isLoading = true;
   String? _errorMessage;
@@ -41,7 +42,7 @@ class _SpeedScreenState extends State<SpeedScreen> {
     if (!serviceEnabled) {
       setState(() {
         _isServiceDisabled = true;
-        _errorMessage = 'Location services are disabled.\nPlease enable them to track speed.';
+        _errorMessage = 'Usługi lokalizacyjne są wyłączone.\nProszę je włączyć, aby śledzić prędkość.';
         _isLoading = false;
       });
       return;
@@ -52,7 +53,7 @@ class _SpeedScreenState extends State<SpeedScreen> {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
         setState(() {
-          _errorMessage = 'Location permissions are denied.\nCannot track speed.';
+          _errorMessage = 'Odmówiono dostępu do lokalizacji.\nNie można śledzić prędkości.';
           _isLoading = false;
         });
         return;
@@ -63,7 +64,7 @@ class _SpeedScreenState extends State<SpeedScreen> {
       setState(() {
         _isPermissionDeniedForever = true;
         _errorMessage =
-            'Location permissions are permanently denied.\nPlease enable them in app settings.';
+            'Uprawnienia do lokalizacji są trwale zablokowane.\nProszę je włączyć w ustawieniach aplikacji.';
         _isLoading = false;
       });
       return;
@@ -89,13 +90,16 @@ class _SpeedScreenState extends State<SpeedScreen> {
               setState(() {
                 // position.speed is in m/s
                 _currentSpeed = position.speed < 0 ? 0 : position.speed;
+                if (_currentSpeed > _maxSpeed) {
+                  _maxSpeed = _currentSpeed;
+                }
               });
             }
           },
           onError: (error) {
             if (mounted) {
               setState(() {
-                _errorMessage = 'Failed to get location stream:\n$error';
+                _errorMessage = 'Nie udało się pobrać strumienia lokalizacji:\n$error';
               });
             }
           },
@@ -109,6 +113,7 @@ class _SpeedScreenState extends State<SpeedScreen> {
   }
 
   double get _speedKmH => _currentSpeed * 3.6;
+  double get _maxSpeedKmH => _maxSpeed * 3.6;
 
   Widget _buildErrorState() {
     return Center(
@@ -120,7 +125,7 @@ class _SpeedScreenState extends State<SpeedScreen> {
             Icon(Icons.location_off, size: 64, color: Theme.of(context).colorScheme.error),
             AppDimens.gap(2),
             Text(
-              _errorMessage ?? 'Unknown error occurred.',
+              _errorMessage ?? 'Wystąpił nieznany błąd.',
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: AppDimens.baseSize * 1.5),
             ),
@@ -131,7 +136,7 @@ class _SpeedScreenState extends State<SpeedScreen> {
                 ElevatedButton.icon(
                   onPressed: _checkPermissionsAndInit,
                   icon: const Icon(Icons.refresh),
-                  label: const Text('Retry'),
+                  label: const Text('Spróbuj ponownie'),
                 ),
                 if (_isServiceDisabled || _isPermissionDeniedForever) ...[
                   AppDimens.gap(2),
@@ -144,7 +149,7 @@ class _SpeedScreenState extends State<SpeedScreen> {
                       }
                     },
                     icon: const Icon(Icons.settings),
-                    label: const Text('Open Settings'),
+                    label: const Text('Otwórz ustawienia'),
                   ),
                 ],
               ],
@@ -164,7 +169,7 @@ class _SpeedScreenState extends State<SpeedScreen> {
           children: [
             CircularProgressIndicator(),
             AppDimens.gap(2),
-            Text('Checking location services...'),
+            Text('Sprawdzanie usług lokalizacyjnych...'),
           ],
         ),
       );
@@ -205,6 +210,34 @@ class _SpeedScreenState extends State<SpeedScreen> {
           Text(
             '(${_currentSpeed.toStringAsFixed(1)} m/s)',
             style: TextStyle(fontSize: 16, color: Colors.grey.shade400),
+          ),
+          AppDimens.gap(4),
+          Text(
+            'Maksymalna prędkość',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
+          ),
+          AppDimens.gap(1),
+          Text(
+            '${_maxSpeedKmH.toStringAsFixed(1)} km/h',
+            style: TextStyle(
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          ),
+          AppDimens.gap(2),
+          OutlinedButton.icon(
+            onPressed: () {
+              setState(() {
+                _maxSpeed = 0.0;
+              });
+            },
+            icon: const Icon(Icons.refresh),
+            label: const Text('Resetuj maks.'),
           ),
         ],
       ),

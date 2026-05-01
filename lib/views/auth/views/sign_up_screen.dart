@@ -46,7 +46,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             signUpRequest = true;
           });
         } else if (state is SignUpFailure) {
-          ToastManager.showErrorToast(context, state.message ?? 'Error signing up!');
+          ToastManager.showErrorToast(context, state.message ?? 'Błąd podczas rejestracji!');
           setState(() {
             signUpRequest = false;
           });
@@ -68,9 +68,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 prefixIcon: Icons.mail,
                 validator: (val) {
                   if (val!.isEmpty) {
-                    return 'Please fill in this field!';
+                    return 'Proszę wypełnić to pole!';
                   } else if (!RegExp(r'^[\w-\.]+@([\w-]+.)+[\w-]{2,4}$').hasMatch(val)) {
-                    return 'Please enter a valid email!';
+                    return 'Proszę podać prawidłowy email!';
                   }
                   return null;
                 },
@@ -78,7 +78,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               AppDimens.gap(2),
               MyTextField(
                 controller: passwordController,
-                hintText: 'Password',
+                hintText: 'Hasło',
                 obscureText: obscurePassword,
                 keyboardType: TextInputType.visiblePassword,
                 prefixIcon: Icons.lock,
@@ -145,11 +145,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 validator: (val) {
                   if (val!.isEmpty) {
-                    return 'Please fill in this field!';
+                    return 'Proszę wypełnić to pole!';
                   } else if (!RegExp(
                     r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~`)\%\-(_+=;:,.<>/?"[{\]}\|^]).{8,}$',
                   ).hasMatch(val)) {
-                    return 'Please enter a valid password!';
+                    return 'Proszę podać prawidłowe hasło!';
                   }
                   return null;
                 },
@@ -163,19 +163,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        containsUpperCase ? "✓  1 uppercase" : "•  1 uppercase",
+                        containsUpperCase ? "✓  1 wielka litera" : "•  1 wielka litera",
                         style: TextStyle(
                           color: containsUpperCase ? Colors.green : t.colorScheme.onSurface,
                         ),
                       ),
                       Text(
-                        containsLowerCase ? "✓  1 lowercase" : "•  1 lowercase",
+                        containsLowerCase ? "✓  1 mała litera" : "•  1 mała litera",
                         style: TextStyle(
                           color: containsLowerCase ? Colors.green : t.colorScheme.onSurface,
                         ),
                       ),
                       Text(
-                        containsNumber ? "✓  1 number" : "•  1 number",
+                        containsNumber ? "✓  1 cyfra" : "•  1 cyfra",
                         style: TextStyle(
                           color: containsNumber ? Colors.green : t.colorScheme.onSurface,
                         ),
@@ -186,13 +186,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        containsSpecialChar ? "✓  1 special character" : "•  1 special character",
+                        containsSpecialChar ? "✓  1 znak specjalny" : "•  1 znak specjalny",
                         style: TextStyle(
                           color: containsSpecialChar ? Colors.green : t.colorScheme.onSurface,
                         ),
                       ),
                       Text(
-                        contains8Length ? "✓  8 minimum character" : "•  8 minimum character",
+                        contains8Length ? "✓  minimum 8 znaków" : "•  minimum 8 znaków",
                         style: TextStyle(
                           color: contains8Length ? Colors.green : t.colorScheme.onSurface,
                         ),
@@ -204,15 +204,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
               AppDimens.gap(2),
               MyTextField(
                 controller: repeatPasswordController,
-                hintText: 'Repeat Password',
+                hintText: 'Powtórz hasło',
                 obscureText: obscurePassword,
                 keyboardType: TextInputType.visiblePassword,
                 prefixIcon: Icons.lock,
                 validator: (val) {
                   if (val!.isEmpty) {
-                    return 'Please fill in this field!';
+                    return 'Proszę wypełnić to pole!';
                   } else if (val != passwordController.text) {
-                    return 'Passwords do not match!';
+                    return 'Hasła nie pasują do siebie!';
                   }
                   return null;
                 },
@@ -233,15 +233,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
               AppDimens.gap(2),
               MyTextField(
                 controller: nameController,
-                hintText: 'Name',
+                hintText: 'Imię',
                 obscureText: false,
                 keyboardType: TextInputType.name,
                 prefixIcon: Icons.person,
                 validator: (val) {
                   if (val!.isEmpty) {
-                    return 'Please fill in this field!';
+                    return 'Proszę wypełnić to pole!';
                   } else if (val.length > 30) {
-                    return 'Name too long!';
+                    return 'Imię jest za długie!';
                   }
                   return null;
                 },
@@ -265,7 +265,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       },
                       child: Padding(
                         padding: AppDimens.paddingSymetric(2, 2),
-                        child: Text('Sign Up', style: AppStyles.loginScreenButtonTextStyle),
+                        child: Text('Zarejestruj', style: AppStyles.loginScreenButtonTextStyle),
                       ),
                     )
                   : const CircularProgressIndicator(),

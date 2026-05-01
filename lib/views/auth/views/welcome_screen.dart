@@ -46,7 +46,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with TickerProviderStateM
                   Padding(
                     padding: AppDimens.paddingAll(2),
                     child: Text(
-                      'Sign In',
+                      'Zaloguj',
                       style: TextStyle(
                         fontSize: 18,
                       ),
@@ -55,7 +55,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with TickerProviderStateM
                   Padding(
                     padding: AppDimens.paddingAll(2),
                     child: Text(
-                      'Sign Up',
+                      'Zarejestruj',
                       style: TextStyle(
                         fontSize: 18,
                       ),

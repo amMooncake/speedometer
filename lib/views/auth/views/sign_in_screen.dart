@@ -37,7 +37,7 @@ class _SignInScreenState extends State<SignInScreen> {
         } else if (state is SignInFailure) {
           setState(() {
             signInRequest = false;
-            _errorMsg = 'Invalid email or password!';
+            _errorMsg = 'Nieprawidłowy email lub hasło!';
           });
         }
       },
@@ -58,9 +58,9 @@ class _SignInScreenState extends State<SignInScreen> {
                 errorMsg: _errorMsg,
                 validator: (val) {
                   if (val!.isEmpty) {
-                    return 'Please fill in this field!';
+                    return 'Proszę wypełnić to pole!';
                   } else if (!RegExp(r'^[\w-\.]+@([\w-]+.)+[\w-]{2,4}$').hasMatch(val)) {
-                    return 'Please enter a valid email!';
+                    return 'Proszę podać prawidłowy email!';
                   }
                   return null;
                 },
@@ -68,18 +68,18 @@ class _SignInScreenState extends State<SignInScreen> {
               AppDimens.gap(2),
               MyTextField(
                 controller: passwordController,
-                hintText: 'Password',
+                hintText: 'Hasło',
                 obscureText: obscurePassword,
                 keyboardType: TextInputType.visiblePassword,
                 prefixIcon: Icons.lock,
                 errorMsg: _errorMsg,
                 validator: (val) {
                   if (val!.isEmpty) {
-                    return 'Please fill in this field!';
+                    return 'Proszę wypełnić to pole!';
                   } else if (!RegExp(
                     r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~`)\%\-(_+=;:,.<>/?"[{\]}\|^]).{8,}$',
                   ).hasMatch(val)) {
-                    return 'Please enter a valid password!';
+                    return 'Proszę podać prawidłowe hasło!';
                   }
                   return null;
                 },
@@ -109,7 +109,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       },
                       child: Padding(
                         padding: AppDimens.paddingSymetric(2, 2),
-                        child: Text('Sign In', style: AppStyles.loginScreenButtonTextStyle),
+                        child: Text('Zaloguj', style: AppStyles.loginScreenButtonTextStyle),
                       ),
                     )
                   : const CircularProgressIndicator(),

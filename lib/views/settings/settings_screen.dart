@@ -15,14 +15,12 @@ class SettingsScreen extends StatelessWidget {
     final themeViewModel = context.watch<ThemeViewModel>();
     final user = context.read<AuthenticationBloc>().state.user;
 
-    String userName = 'User';
+    String userName = 'Użytkownik';
     if (user != null) {
       if (user.name.isNotEmpty) {
         userName = user.name;
       } else if (user.email.isNotEmpty) {
         userName = user.email;
-      } else {
-        userName = 'User';
       }
     }
 
@@ -36,7 +34,7 @@ class SettingsScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'Cześć, $userName! 👋',
+                  'Cześć, $userName!',
                   style: t.textTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -44,7 +42,7 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 AppDimens.gap(4),
                 SwitchListTile(
-                  title: const Text('Tryb ciemny'),
+                  title: themeViewModel.isDark ? Text('Tryb ciemny') : Text('Tryb jasny'),
                   secondary: Icon(
                     themeViewModel.isDark ? Icons.dark_mode : Icons.light_mode,
                   ),
@@ -75,36 +73,23 @@ class SettingsScreen extends StatelessWidget {
 }
 
 Widget _buildCredits(ThemeData t) {
-  return Column(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      Text(
-        'App made by Aleksy Malawski & Igor Nejman',
-        style: t.textTheme.bodyMedium?.copyWith(color: Colors.grey),
-        textAlign: TextAlign.center,
-      ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'for WSEI with',
-            style: t.textTheme.bodyMedium?.copyWith(color: Colors.grey),
-          ),
-          const SizedBox(width: 6),
-          const Icon(
-            Icons.favorite,
-            size: 16,
-            color: Colors.redAccent,
-          ),
-          const SizedBox(width: 6),
-          Text(
-            'and',
-            style: t.textTheme.bodyMedium?.copyWith(color: Colors.grey),
-          ),
-          const SizedBox(width: 6),
-          const FlutterLogo(size: 16),
-        ],
-      ),
-    ],
+  return RichText(
+    textAlign: TextAlign.center,
+    text: TextSpan(
+      style: t.textTheme.bodyMedium?.copyWith(color: Colors.grey, height: 1.5),
+      children: [
+        TextSpan(
+          text: 'Aplikacja stworzona przez Aleksego Malawskiego i Igora Nejmana dla WSEI z ',
+        ),
+        WidgetSpan(
+          alignment: PlaceholderAlignment.middle,
+          child: Icon(Icons.favorite, size: 16, color: Colors.redAccent),
+        ),
+        TextSpan(
+          text: ' oraz ',
+        ),
+        WidgetSpan(alignment: PlaceholderAlignment.middle, child: FlutterLogo(size: 16)),
+      ],
+    ),
   );
 }
