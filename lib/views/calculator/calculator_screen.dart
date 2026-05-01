@@ -153,6 +153,41 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     setState(() {});
   }
 
+  List<MyDistanceTextButton> get quickDistanceButtons => [
+    MyDistanceTextButton(
+      label: '1k',
+      onPressed: () => _setDistance(1, 0),
+    ),
+    MyDistanceTextButton(
+      label: '1.5k',
+      onPressed: () => _setDistance(1, 500),
+    ),
+    MyDistanceTextButton(
+      label: '2k',
+      onPressed: () => _setDistance(2, 0),
+    ),
+    MyDistanceTextButton(
+      label: '5k',
+      onPressed: () => _setDistance(5, 0),
+    ),
+    MyDistanceTextButton(
+      label: '10k',
+      onPressed: () => _setDistance(10, 0),
+    ),
+    MyDistanceTextButton(
+      label: '15k',
+      onPressed: () => _setDistance(15, 0),
+    ),
+    MyDistanceTextButton(
+      label: 'Pół',
+      onPressed: () => _setDistance(21, 100),
+    ),
+    MyDistanceTextButton(
+      label: 'Maraton',
+      onPressed: () => _setDistance(42, 200),
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     final t = Theme.of(context);
@@ -178,7 +213,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
               _timeSec = val;
               _onFieldEdited(CalculatorField.time);
             }),
-
+            AppDimens.gap(1),
             // distance
             Row(
               children: [
@@ -187,34 +222,8 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        const Padding(
-                          padding: EdgeInsets.only(right: 8.0),
-                          child: Text('Wybierz dystans'),
-                        ),
-                        MyDistanceTextButton(
-                          label: '1.5k',
-                          onPressed: () => _setDistance(1, 500),
-                        ),
-                        const SizedBox(width: 12),
-                        MyDistanceTextButton(
-                          label: '5k',
-                          onPressed: () => _setDistance(5, 0),
-                        ),
-                        AppDimens.gap(2),
-                        MyDistanceTextButton(
-                          label: '10k',
-                          onPressed: () => _setDistance(10, 0),
-                        ),
-                        const SizedBox(width: 12),
-                        MyDistanceTextButton(
-                          label: 'Pół',
-                          onPressed: () => _setDistance(21, 100),
-                        ),
-                        const SizedBox(width: 12),
-                        MyDistanceTextButton(
-                          label: 'Maraton',
-                          onPressed: () => _setDistance(42, 200),
-                        ),
+                        const Text('Dyst'),
+                        ...quickDistanceButtons,
                       ],
                     ),
                   ),

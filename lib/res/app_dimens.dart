@@ -17,13 +17,13 @@ class AppDimens {
   static Gap gap([double x = 1.0]) => Gap(baseSize * x);
 
   /// return padding for spacing
-  static EdgeInsetsGeometry paddingAll(double? x) => EdgeInsets.all(baseSize * (x ?? 1));
+  static EdgeInsetsGeometry paddingAll([double x = 1.0]) => EdgeInsets.all(baseSize * (x));
 
-  static EdgeInsetsGeometry paddingHorizontal(double? x) =>
-      EdgeInsets.symmetric(horizontal: baseSize * (x ?? 1));
+  static EdgeInsetsGeometry paddingHorizontal([double x = 1.0]) =>
+      EdgeInsets.symmetric(horizontal: baseSize * (x));
 
-  static EdgeInsetsGeometry paddingSymetric(double? x, double? y) =>
-      EdgeInsets.symmetric(horizontal: baseSize * (x ?? 1), vertical: baseSize * (y ?? 1));
+  static EdgeInsetsGeometry paddingSymetric([double x = 1.0, double y = 1.0]) =>
+      EdgeInsets.symmetric(horizontal: baseSize * (x), vertical: baseSize * (y));
 }
 
 /* 
