@@ -4,6 +4,7 @@ import 'package:speedometer_mobile/res/app_dimens.dart';
 import 'package:speedometer_mobile/res/toast.dart';
 import 'package:speedometer_mobile/viewmodels/calculator/calculation_history_view_model.dart';
 import 'package:speedometer_mobile/views/calculator/widgets/wheel_slider.dart';
+import 'package:speedometer_mobile/components/my_distance_text_button.dart';
 
 enum CalculatorField { distance, time, pace }
 
@@ -66,6 +67,22 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     });
 
     _calculate();
+  }
+
+  void _setDistance(int km, int m) {
+    if (_isUpdating) return;
+
+    _distanceKm = km;
+    _distanceM = m;
+
+    if (_distanceKmController.hasClients) {
+      _distanceKmController.jumpToItem(_distanceKm);
+    }
+    if (_distanceMController.hasClients) {
+      _distanceMController.jumpToItem(_distanceM ~/ 10);
+    }
+
+    _onFieldEdited(CalculatorField.distance);
   }
 
   void _calculate() {
@@ -163,8 +180,47 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
             }),
 
             // distance
-            AppDimens.gap(2),
-            _buildSectionTitle('Dystans', CalculatorField.distance),
+            Row(
+              children: [
+                Expanded(
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(right: 8.0),
+                          child: Text('Wybierz dystans'),
+                        ),
+                        MyDistanceTextButton(
+                          label: '1.5k',
+                          onPressed: () => _setDistance(1, 500),
+                        ),
+                        const SizedBox(width: 12),
+                        MyDistanceTextButton(
+                          label: '5k',
+                          onPressed: () => _setDistance(5, 0),
+                        ),
+                        AppDimens.gap(2),
+                        MyDistanceTextButton(
+                          label: '10k',
+                          onPressed: () => _setDistance(10, 0),
+                        ),
+                        const SizedBox(width: 12),
+                        MyDistanceTextButton(
+                          label: 'Pół',
+                          onPressed: () => _setDistance(21, 100),
+                        ),
+                        const SizedBox(width: 12),
+                        MyDistanceTextButton(
+                          label: 'Maraton',
+                          onPressed: () => _setDistance(42, 200),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
             _buildPicker('Km', 100, _distanceKmController, (val) {
               _distanceKm = val;
               _onFieldEdited(CalculatorField.distance);
