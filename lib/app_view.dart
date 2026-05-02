@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lock_orientation_screen/lock_orientation_screen.dart';
 import 'package:speedometer_mobile/blocs/authentication_bloc/authentication_bloc.dart';
 import 'package:speedometer_mobile/config/theme2.dart';
 import 'package:speedometer_mobile/viewmodels/theme/theme_model.dart';
@@ -16,25 +17,27 @@ class MyAppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeViewModel = context.watch<ThemeViewModel>();
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      themeMode: themeViewModel.themeMode,
-      theme: AppTheme.lightColorScheme,
-      darkTheme: AppTheme.darkColorScheme,
-      // home: const OnboardingScreen(),
-      home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-        builder: (context, state) {
-          if (state.status == AuthenticationStatus.authenticated) {
-            return BlocProvider(
-              create: (context) => SignInBloc(context.read<AuthenticationBloc>().userRepository),
-              child: const HomeScreen(),
-            );
-          } else if (state.status == AuthenticationStatus.unknown) {
-            return const Scaffold(body: Center(child: CircularProgressIndicator()));
-          } else {
-            return const WelcomeScreen();
-          }
-        },
+    return LockOrientation(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        themeMode: themeViewModel.themeMode,
+        theme: AppTheme.lightColorScheme,
+        darkTheme: AppTheme.darkColorScheme,
+        // home: const OnboardingScreen(),
+        home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+          builder: (context, state) {
+            if (state.status == AuthenticationStatus.authenticated) {
+              return BlocProvider(
+                create: (context) => SignInBloc(context.read<AuthenticationBloc>().userRepository),
+                child: const HomeScreen(),
+              );
+            } else if (state.status == AuthenticationStatus.unknown) {
+              return const Scaffold(body: Center(child: CircularProgressIndicator()));
+            } else {
+              return const WelcomeScreen();
+            }
+          },
+        ),
       ),
     );
   }
