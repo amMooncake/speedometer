@@ -37,7 +37,12 @@ class _SignInScreenState extends State<SignInScreen> {
         } else if (state is SignInFailure) {
           setState(() {
             signInRequest = false;
-            _errorMsg = 'Nieprawidłowy email lub hasło!';
+            // Only update errorMsg if the failure provided a specific message.
+            if (state.message != null) {
+              _errorMsg = state.message;
+            } else {
+              _errorMsg = null;
+            }
           });
         }
       },
@@ -114,6 +119,17 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                     )
                   : const CircularProgressIndicator(),
+              AppDimens.gap(2),
+              OutlinedButton.icon(
+                onPressed: () {
+                  // hide keybord error
+                  FocusManager.instance.primaryFocus?.unfocus();
+
+                  context.read<SignInBloc>().add(SignInWithGoogleRequest());
+                },
+                icon: Image.asset('assets/google_logo.png', height: 24.0),
+                label: const Text('Zaloguj przez Google'),
+              ),
             ],
           ),
         ),

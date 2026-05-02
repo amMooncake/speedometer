@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 // import 'package:flutter/foundation.dart';
 import 'package:rxdart/rxdart.dart';
 import '../user_repository.dart';
@@ -14,16 +15,17 @@ class FirebaseUserRepo implements UserRepository {
 
   @override
   Stream<MyUser?> get user {
-    return _firebaseAuth.authStateChanges().flatMap((firebaseUser) async* {
+    return _firebaseAuth.authStateChanges().switchMap((firebaseUser) {
       if (firebaseUser == null) {
-        // debugPrint('user is empty');
-        yield MyUser.empty;
+        return Stream.value(MyUser.empty);
       } else {
-        // debugPrint('user is not empty');
-        yield await usersCollection
-            .doc(firebaseUser.uid)
-            .get()
-            .then((value) => MyUser.fromEntity(MyUserEntity.fromDocument(value.data()!)));
+        return usersCollection.doc(firebaseUser.uid).snapshots().map((snapshot) {
+          if (snapshot.exists && snapshot.data() != null) {
+            return MyUser.fromEntity(MyUserEntity.fromDocument(snapshot.data()!));
+          } else {
+            return MyUser.empty;
+          }
+        });
       }
     });
   }
@@ -46,6 +48,44 @@ class FirebaseUserRepo implements UserRepository {
 
       myUser.userId = user.user!.uid;
       return myUser;
+    } catch (e) {
+      log(e.toString());
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount googleUser = await GoogleSignIn.instance.authenticate();
+
+      final GoogleSignInAuthentication googleAuth = googleUser.authentication;
+      final GoogleSignInClientAuthorization? authz =
+          await googleUser.authorizationClient.authorizationForScopes([
+        'email',
+      ]);
+
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: authz?.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      UserCredential userCredential = await _firebaseAuth.signInWithCredential(credential);
+
+      // Create a user in Firestore if it doesn't exist
+      if (userCredential.user != null) {
+        final user = userCredential.user!;
+        final doc = await usersCollection.doc(user.uid).get();
+        if (!doc.exists) {
+          final myUser = MyUser(
+            userId: user.uid,
+            email: user.email ?? '',
+            name: user.displayName ?? '',
+            // Initialize other default fields here if necessary
+          );
+          await setUserData(myUser);
+        }
+      }
     } catch (e) {
       log(e.toString());
       rethrow;

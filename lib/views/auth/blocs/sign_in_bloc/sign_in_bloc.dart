@@ -13,10 +13,21 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       emit(SignInProcess());
       try {
         await _userRepository.signIn(event.email, event.password);
+        emit(SignInSuccess());
       } catch (e) {
-        emit(SignInFailure());
+        emit(const SignInFailure(message: 'Nieprawidłowy email lub hasło!'));
       }
     });
     on<SignOutRequired>((event, emit) async => await _userRepository.logOut());
+
+    on<SignInWithGoogleRequest>((event, emit) async {
+      emit(SignInProcess());
+      try {
+        await _userRepository.signInWithGoogle();
+        emit(SignInSuccess());
+      } catch (e) {
+        emit(const SignInFailure());
+      }
+    });
   }
 }

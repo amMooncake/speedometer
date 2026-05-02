@@ -29,6 +29,8 @@ class MyAppView extends StatelessWidget {
               create: (context) => SignInBloc(context.read<AuthenticationBloc>().userRepository),
               child: const HomeScreen(),
             );
+          } else if (state.status == AuthenticationStatus.unknown) {
+            return const Scaffold(body: Center(child: CircularProgressIndicator()));
           } else {
             return const WelcomeScreen();
           }

@@ -3,7 +3,6 @@ import 'package:speedometer_mobile/res/app_dimens.dart';
 import 'package:speedometer_mobile/res/app_styles.dart';
 import 'package:speedometer_mobile/res/toast.dart';
 import 'package:user_repository/user_repository.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../components/my_text_field.dart';

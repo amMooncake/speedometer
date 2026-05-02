@@ -18,3 +18,5 @@ class SignInRequest extends SignInEvent {
 }
 
 class SignOutRequired extends SignInEvent {}
+
+class SignInWithGoogleRequest extends SignInEvent {}

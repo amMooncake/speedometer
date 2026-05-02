@@ -9,7 +9,14 @@ sealed class SignInState extends Equatable {
 
 final class SignInInitial extends SignInState {}
 
-final class SignInFailure extends SignInState {}
+final class SignInFailure extends SignInState {
+  final String? message;
+
+  const SignInFailure({this.message});
+
+  @override
+  List<Object> get props => [message ?? ''];
+}
 
 final class SignInProcess extends SignInState {}
 
